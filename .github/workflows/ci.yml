@@ -1,0 +1,43 @@
+name: CI
+
+on:
+  pull_request:
+  push:
+    branches: ["main"]
+
+jobs:
+  lint-test:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+
+      - name: Install dependencies
+        run: |
+          python -m pip install --upgrade pip
+          pip install -r src/ingest/requirements.txt
+          pip install dbt-core==1.7.7 dbt-postgres==1.7.7 great-expectations==0.18.8 ruff==0.3.2 pytest==8.0.0
+
+      - name: Lint
+        run: |
+          ruff check src
+
+      - name: Tests
+        run: |
+          pytest
+
+      - name: dbt compile
+        env:
+          WAREHOUSE_DB_HOST: localhost
+          WAREHOUSE_DB_PORT: 5432
+          WAREHOUSE_DB_USER: analytics
+          WAREHOUSE_DB_PASSWORD: analytics
+          WAREHOUSE_DB_NAME: analytics
+        run: |
+          cp dbt/profiles.yml.example dbt/profiles.yml
+          dbt compile --project-dir dbt

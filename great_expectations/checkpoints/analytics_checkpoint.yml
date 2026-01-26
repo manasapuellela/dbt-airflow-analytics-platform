@@ -1,0 +1,13 @@
+name: analytics_checkpoint
+config_version: 1.0
+class_name: Checkpoint
+run_name_template: "%Y%m%d-%H%M%S-analytics"
+validations:
+  - batch_request:
+      datasource_name: warehouse_db
+      data_asset_name: raw_yellow_taxi
+    expectation_suite_name: raw_yellow_taxi_suite
+  - batch_request:
+      datasource_name: warehouse_db
+      data_asset_name: mart_daily_metrics
+    expectation_suite_name: mart_daily_metrics_suite

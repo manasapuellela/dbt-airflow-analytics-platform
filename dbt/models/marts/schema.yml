@@ -1,0 +1,41 @@
+version: 2
+
+models:
+  - name: dim_date
+    columns:
+      - name: date_day
+        tests:
+          - not_null
+          - unique
+  - name: dim_location
+    columns:
+      - name: location_id
+        tests:
+          - not_null
+          - unique
+  - name: fact_trips
+    columns:
+      - name: pickup_date
+        tests:
+          - not_null
+      - name: pickup_location_id
+        tests:
+          - relationships:
+              to: ref('dim_location')
+              field: location_id
+      - name: dropoff_location_id
+        tests:
+          - relationships:
+              to: ref('dim_location')
+              field: location_id
+  - name: mart_daily_metrics
+    columns:
+      - name: pickup_date
+        tests:
+          - not_null
+          - unique
+  - name: mart_vendor_metrics
+    columns:
+      - name: vendor_id
+        tests:
+          - not_null
