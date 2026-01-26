@@ -1,3 +1,5 @@
+<img width="1289" height="862" alt="image" src="https://github.com/user-attachments/assets/abf629bf-2896-4ca3-9396-2ff486e9bdc7" />
+
 # Analytics Engineering E2E Platform
 
 Production-ready analytics engineering starter with:
