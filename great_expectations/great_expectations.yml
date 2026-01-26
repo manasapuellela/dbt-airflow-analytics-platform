@@ -1,0 +1,52 @@
+config_version: 3.0
+
+plugins_directory: plugins/
+
+stores:
+  expectations_store:
+    class_name: ExpectationsStore
+    store_backend:
+      class_name: TupleFilesystemStoreBackend
+      base_directory: expectations/
+  validations_store:
+    class_name: ValidationsStore
+    store_backend:
+      class_name: TupleFilesystemStoreBackend
+      base_directory: uncommitted/validations/
+  checkpoint_store:
+    class_name: CheckpointStore
+    store_backend:
+      class_name: TupleFilesystemStoreBackend
+      base_directory: checkpoints/
+
+expectations_store_name: expectations_store
+validations_store_name: validations_store
+checkpoint_store_name: checkpoint_store
+
+anonymous_usage_statistics:
+  enabled: false
+
+_datasources:
+
+config_variables_file_path: uncommitted/config_variables.yml
+
+data_docs_sites:
+  local_site:
+    class_name: SiteBuilder
+    store_backend:
+      class_name: TupleFilesystemStoreBackend
+      base_directory: uncommitted/data_docs/local_site/
+    site_index_builder:
+      class_name: DefaultSiteIndexBuilder
+
+fluent_datasources:
+  warehouse_db:
+    type: sql
+    connection_string: postgresql+psycopg2://${WAREHOUSE_DB_USER}:${WAREHOUSE_DB_PASSWORD}@${WAREHOUSE_DB_HOST}:${WAREHOUSE_DB_PORT}/${WAREHOUSE_DB_NAME}
+    assets:
+      raw_yellow_taxi:
+        type: table
+        table_name: raw.yellow_taxi_trips
+      mart_daily_metrics:
+        type: table
+        table_name: marts.mart_daily_metrics
