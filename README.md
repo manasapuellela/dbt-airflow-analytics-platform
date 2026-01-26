@@ -45,10 +45,10 @@ great_expectations checkpoint run analytics_checkpoint --config great_expectatio
 python src/ingest/export_daily_metrics.py
 ```
 
-## Dataset
-- NYC TLC Yellow Taxi dataset (official parquet).
-- The ingest script downloads the file and loads **one parquet row group** to keep the demo light.
-- Taxi zone lookup is also downloaded for dimension modeling.
+## Data Source
+- Publicly available NYC TLC Yellow Taxi trip records.
+- Source URL: https://d37ci6vzurychx.cloudfront.net/trip-data/yellow_tripdata_2023-01.parquet
+- The ingest demo uses a small subset of columns from this single monthly parquet file.
 
 ## Project Structure
 ```
