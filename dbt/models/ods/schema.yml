@@ -1,0 +1,11 @@
+version: 2
+
+models:
+  - name: ods_trips
+    columns:
+      - name: pickup_date
+        tests:
+          - not_null
+      - name: pickup_location_id
+        tests:
+          - not_null

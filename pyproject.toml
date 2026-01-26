@@ -1,0 +1,6 @@
+[tool.ruff]
+line-length = 100
+extend-exclude = [".venv", "dbt/target", "great_expectations/uncommitted"]
+
+[tool.ruff.lint]
+select = ["E", "F", "I"]

@@ -1,0 +1,9 @@
+.env
+.venv/
+__pycache__/
+*.pyc
+exports/*.csv
+dbt/target/
+dbt/logs/
+.great_expectations/
+great_expectations/uncommitted/
