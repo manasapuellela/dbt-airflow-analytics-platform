@@ -1,13 +1,18 @@
 <img width="1289" height="862" alt="image" src="https://github.com/user-attachments/assets/abf629bf-2896-4ca3-9396-2ff486e9bdc7" />
 
-# Analytics Engineering E2E Platform
+# Analytics Engineering E2E Platform (Event Metrics + Data Trust)
 
-Production-ready analytics engineering starter with:
-- **S3 ingest** (MinIO for local dev, S3 compatible)
-- **dbt models** (staging → ods → marts)
-- **dbt tests + Great Expectations checks**
-- **Airflow orchestration**
-- **BI-ready exports** (QuickSight/Tableau/Power BI)
+Production-ready analytics engineering platform that turns raw, event-level data into trusted, BI-ready metrics.
+
+This repo demonstrates an end-to-end pattern used in modern, high-signal data teams:
+- **Object storage ingest** (S3 compatible via MinIO for local dev)
+- **dbt transformations** (staging → ods → marts) for clean, governed data products
+- **Data trust gates** using **dbt tests** and **Great Expectations** (freshness, validity, and anomaly checks)
+- **Airflow orchestration** for repeatable daily runs
+- **BI exports** to support QuickSight, Tableau, or Power BI
+
+The project is intentionally designed around **event-style pipelines**, where correctness, freshness, and reliability matter as much as speed.
+
 
 ## Stack
 - Python 3.11
