@@ -1,0 +1,32 @@
+version: 2
+
+models:
+  - name: mart_event_reliability_daily
+    columns:
+      - name: pickup_date
+        tests:
+          - not_null
+          - unique
+      - name: events_count
+        tests:
+          - not_null
+      - name: pct_missing_vendor_id
+        tests:
+          - not_null
+          - dbt_utils.expression_is_true:
+              expression: "pct_missing_vendor_id between 0 and 1"
+      - name: pct_missing_passenger_count
+        tests:
+          - not_null
+          - dbt_utils.expression_is_true:
+              expression: "pct_missing_passenger_count between 0 and 1"
+      - name: pct_invalid_trip_distance
+        tests:
+          - not_null
+          - dbt_utils.expression_is_true:
+              expression: "pct_invalid_trip_distance between 0 and 1"
+      - name: pct_invalid_fare_amount
+        tests:
+          - not_null
+          - dbt_utils.expression_is_true:
+              expression: "pct_invalid_fare_amount between 0 and 1"
