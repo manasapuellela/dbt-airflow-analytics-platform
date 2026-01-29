@@ -6,7 +6,7 @@ analytics_platform:
       host: "{{ env_var('WAREHOUSE_DB_HOST') }}"
       user: "{{ env_var('WAREHOUSE_DB_USER') }}"
       password: "{{ env_var('WAREHOUSE_DB_PASSWORD') }}"
-      port: "{{ env_var('WAREHOUSE_DB_PORT') }}"
+      port: "{{ env_var('WAREHOUSE_DB_PORT') | int }}"
       dbname: "{{ env_var('WAREHOUSE_DB_NAME') }}"
       schema: analytics
       threads: 4
