@@ -22,10 +22,10 @@ init:
 	bash scripts/bootstrap.sh
 
 dbt-run:
-	dbt run --project-dir dbt
+	dbt run --project-dir dbt --profiles-dir dbt
 
 dbt-test:
-	dbt test --project-dir dbt
+	dbt test --project-dir dbt --profiles-dir dbt
 
 ge-check:
 	great_expectations checkpoint run analytics_checkpoint --config great_expectations/great_expectations.yml
