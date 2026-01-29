@@ -57,7 +57,10 @@ def add_pickup_date(
         if column == "pickup_datetime" and fallback_column in dataframe.columns:
             column = fallback_column
         else:
-            raise KeyError(f"Missing expected pickup datetime column: {column}")
+            raise KeyError(
+                f"Missing expected pickup datetime column: {column}. "
+                f"Fallback column not found: {fallback_column}."
+            )
     dataframe[column] = pd.to_datetime(dataframe[column])
     dataframe["pickup_date"] = dataframe[column].dt.date
     return dataframe
