@@ -47,14 +47,17 @@ def get_warehouse_db_uri() -> str:
 
 
 def add_pickup_date(
-    dataframe: pd.DataFrame, column: str = "tpep_pickup_datetime"
+    dataframe: pd.DataFrame,
+    column: str = "pickup_datetime",
+    fallback_column: str = "tpep_pickup_datetime",
 ) -> pd.DataFrame:
     """Add a pickup_date column derived from the provided datetime column."""
     dataframe = dataframe.copy()
-    if column not in dataframe.columns and "pickup_datetime" in dataframe.columns:
-        column = "pickup_datetime"
     if column not in dataframe.columns:
-        raise KeyError(f"Missing expected pickup datetime column: {column}")
+        if column == "pickup_datetime" and fallback_column in dataframe.columns:
+            column = fallback_column
+        else:
+            raise KeyError(f"Missing expected pickup datetime column: {column}")
     dataframe[column] = pd.to_datetime(dataframe[column])
     dataframe["pickup_date"] = dataframe[column].dt.date
     return dataframe

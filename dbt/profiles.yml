@@ -3,11 +3,11 @@ analytics_platform:
   outputs:
     dev:
       type: postgres
-      host: ${WAREHOUSE_DB_HOST}
-      user: ${WAREHOUSE_DB_USER}
-      password: ${WAREHOUSE_DB_PASSWORD}
-      port: ${WAREHOUSE_DB_PORT}
-      dbname: ${WAREHOUSE_DB_NAME}
+      host: "{{ env_var('WAREHOUSE_DB_HOST') }}"
+      user: "{{ env_var('WAREHOUSE_DB_USER') }}"
+      password: "{{ env_var('WAREHOUSE_DB_PASSWORD') }}"
+      port: "{{ env_var('WAREHOUSE_DB_PORT') }}"
+      dbname: "{{ env_var('WAREHOUSE_DB_NAME') }}"
       schema: analytics
       threads: 4
       keepalives_idle: 0
